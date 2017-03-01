@@ -35,3 +35,64 @@ NO
 NO
 */
 
+
+/*
+
+解析：P和T只能有一个，中间可以有任意个A，c = a倍个b
+
+*/
+
+
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+
+int main()
+{
+	char Input[100];
+	int pos_P,pos_T,count_P,count_A,count_T,count_K;
+	int i,j,n;
+	scanf("%d\n",&n);
+	for (i = 0; i < n; i++)
+	{
+		gets(Input);
+		pos_P = 0;
+		pos_T = 0;
+		count_P = 0;
+		count_A = 0;
+		count_T = 0;
+
+		for (int j = 0; j < strlen(Input); j++)
+		{
+			if (Input[j] == 'P')
+			{
+				count_P++;
+				pos_P = j;
+			}
+
+			if (Input[j] == 'A')
+			{
+				count_A++;
+			}
+
+			if (Input[j] == 'T')
+			{
+				count_T++;
+				pos_T = j;
+			}
+		}
+
+		if ((count_P + count_A + count_T != strlen(Input))||
+			(pos_T - pos_P <= 1)||
+			(count_P > 1)||(count_T > 1)||
+			(strlen(Input) - 1 - pos_T != pos_P * (pos_T - 1 - pos_P)))
+		{
+			printf("NO\n");
+		}
+		else{
+			printf("YES\n");
+		}
+	}
+
+	return 0;
+}
